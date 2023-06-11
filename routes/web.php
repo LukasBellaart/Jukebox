@@ -2,8 +2,13 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PlaylistController;
+
+
 use App\Http\Controllers\SongController;
+use App\Http\Controllers\PlaylistSongController;
+
 use App\Http\Controllers\GenreController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,9 +36,18 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
+//Playlists
 Route::get('/playlists', [PlaylistController::class, 'index'])->middleware(['auth', 'verified'])->name("playlists");
+Route::get('/playlists/{playlistId}', [PlaylistController::class, 'showDedicatedPlaylist'])->middleware(['auth', 'verified']);
+Route::post('/playlists/create', [PlaylistController::class, 'createPlaylist'])->middleware(['auth', 'verified'])->name("playlistCreate");
+
+//Songs
 Route::get('/songs', [SongController::class, 'index'])->middleware(['auth', 'verified'])->name("songs");
+Route::post('/songs/{songId}/add', [PlaylistSongController::class, 'addSongToPlaylist'])->middleware(['auth', 'verified']);
+
+//Genres
 Route::get('/genres', [GenreController::class, 'index'])->middleware(['auth', 'verified'])->name("genres");
+
+
 
 require __DIR__.'/auth.php';

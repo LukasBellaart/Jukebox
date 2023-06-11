@@ -18,7 +18,9 @@ class SongFactory extends Factory
     {
         return [
             'name' => "",
-            'genreid' => rand(0,10),
+            'genre_id' => rand(1,11),
+            'artist' => fake()->name(),
+            'duration' => rand(120,300),
         ];
     }
 }

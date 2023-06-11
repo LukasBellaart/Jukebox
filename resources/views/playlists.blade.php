@@ -5,11 +5,26 @@
         </h2>
     </x-slot>
 
+    @foreach ($playlists as $playlist)
+        <div onclick="window.location.href='/playlists/{{ $playlist->id }}'" class="py-12">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+                        {{ $playlist->name }}
+                    </div>
+                </div>
+            </div>
+        </div>         
+    @endforeach
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("Playlists here!") }}
+                    <form method="post" action="{{ route('playlistCreate')}}" accept-charset="UTF-8">
+                        {{ csrf_field() }}
+                        <input class="dark:bg-gray-800" type="text" name="name" placeholder="Playlist name"><br>
+                        <button type="submit">Maak playlist</button>
+                    </form>
                 </div>
             </div>
         </div>

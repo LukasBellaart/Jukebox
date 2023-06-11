@@ -28,7 +28,20 @@
                             @foreach ($songs as $song)
                                 <tr>
                                     <td >{{ $song->name }}</td>
-                                    <td >{{ $song::with('genre')->find($song->genreid)->genre->name }}</td>
+
+                                    <td >{{ $song::with('genre')->find($song->genre_id) !== null ? $song::with('genre')->find($song->genre_id)->genre->name : dd( $song)}}</td>
+                                    <td>
+                                        <form method="post" action="/songs/{{ $song->id }}/add" accept-charset="UTF-8">
+                                            {{ csrf_field() }}
+                                            <select class="dark:bg-gray-800" name="playlist">
+                                                @foreach ($playlists as $playlist)
+                                                    <option value={{ $playlist->id}}>{{ $playlist->name }}</option>
+                                                @endforeach
+                                            </select>
+
+                                            <button type="submit">Add</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PlaylistController;
+use App\Http\Controllers\SongController;
+use App\Http\Controllers\GenreController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,5 +30,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+Route::get('/playlists', [PlaylistController::class, 'index'])->middleware(['auth', 'verified'])->name("playlists");
+Route::get('/songs', [SongController::class, 'index'])->middleware(['auth', 'verified'])->name("songs");
+Route::get('/genres', [GenreController::class, 'index'])->middleware(['auth', 'verified'])->name("genres");
 
 require __DIR__.'/auth.php';

@@ -27,8 +27,8 @@
                             </tr>
                             @foreach ($songs as $song)
                                 <tr>
-                                    <td >{{ $genre->name }}</td>
-                                    <td >{{ $genre->genreid }}</td>
+                                    <td >{{ $song->name }}</td>
+                                    <td >{{ $song::with('genre')->find($song->genreid)->genre->name }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

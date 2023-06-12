@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Log;
 
 use Illuminate\Http\Request;
 use App\Models\Playlist;
-use App\Models\Playlist_Song;
+use App\Models\PlaylistSong;
 use App\Models\Song;
 
 class PlaylistController extends Controller
@@ -14,15 +14,19 @@ class PlaylistController extends Controller
         return view("playlists", ["playlists"=>Playlist::all()]);
     }
 
-    public function showDedicatedPlaylist($playlistId){
-        $playlistInfo = Playlist::find(1);
-
-        $music = $playlistInfo->songs()->song();
- 
+    public function showDedicatedList($playlistId){
+        $playlistInfo = Playlist::find($playlistId);       
         
-        
+        $durationSeconds = 0;
 
-        return view("dedicatedPlaylist", ["playlistInfo"=>$playlistInfo, "test"=>$music]);
+        foreach ($playlistInfo->songs as $song) {
+            $durationSeconds += $song->duration;
+        }   
+
+        $duration = gmdate("H:i:s",$durationSeconds);
+
+    
+        return view("dedicatedPlaylist", ["playlist"=>$playlistInfo, "duration"=>$duration]);
     }
 
     public function createPlaylist(Request $request)

@@ -17,12 +17,10 @@
                         <tbody>
                             <tr>
                                 <th>Name</th>
-                                <th>DeleteBtn</th>
                             </tr>
                             @foreach ($genres as $genre)
-                                <tr>
+                                <tr onclick="window.location.href='/genre/{{ $genre->id }}'">
                                     <td >{{ $genre->name }}</td>
-                                    <td >{{ $genre->id }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

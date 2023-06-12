@@ -7,9 +7,13 @@ use App\models\Genre;
 
 class GenreController extends Controller
 {
-    //
+    
     public function index(){
         return view("genres", ['genres'=>Genre::all()]);
+    }
+
+    public function showDedicatedList($genreId){
+        dd(Genre::find($genreId)->listSongs);
     }
 
 }

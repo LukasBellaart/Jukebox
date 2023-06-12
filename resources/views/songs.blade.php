@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="pt-4">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
@@ -27,9 +27,9 @@
                             </tr>
                             @foreach ($songs as $song)
                                 <tr>
-                                    <td >{{ $song->name }}</td>
+                                    <td onclick="window.location.href='/song/{{ $song->id }}'">{{ $song->name }}</td>
 
-                                    <td >{{ $song::with('genre')->find($song->genre_id) !== null ? $song::with('genre')->find($song->genre_id)->genre->name : dd( $song)}}</td>
+                                    <td >{{ $song->genre->name }}</td>
                                     <td>
                                         <form method="post" action="/songs/{{ $song->id }}/add" accept-charset="UTF-8">
                                             {{ csrf_field() }}

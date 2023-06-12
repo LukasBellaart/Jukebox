@@ -6,7 +6,7 @@
     </x-slot>
 
     @foreach ($playlists as $playlist)
-        <div onclick="window.location.href='/playlists/{{ $playlist->id }}'" class="py-12">
+        <div onclick="window.location.href='/playlists/{{ $playlist->id }}'" class="pt-4">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
@@ -16,7 +16,7 @@
             </div>
         </div>         
     @endforeach
-    <div class="py-12">
+    <div class="pt-4">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">

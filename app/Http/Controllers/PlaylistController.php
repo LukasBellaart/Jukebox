@@ -8,8 +8,7 @@ use App\Models\Playlist;
 use App\Models\PlaylistSong;
 use App\Models\Song;
 
-class PlaylistController extends Controller
-{
+class PlaylistController extends Controller {
     public function index(){
         return view("playlists", ["playlists"=>Playlist::all()]);
     }
@@ -29,8 +28,7 @@ class PlaylistController extends Controller
         return view("dedicatedPlaylist", ["playlist"=>$playlistInfo, "duration"=>$duration]);
     }
 
-    public function createPlaylist(Request $request)
-    {
+    public function createPlaylist(Request $request) {
 
         $newPlayList = new Playlist;
         $newPlayList->name = $request->name;
@@ -39,5 +37,4 @@ class PlaylistController extends Controller
 
         return redirect('/playlists');
     }
-
 }

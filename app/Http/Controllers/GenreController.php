@@ -6,8 +6,7 @@ use Illuminate\Http\Request;
 use App\models\Genre;
 use App\models\Playlist;
 
-class GenreController extends Controller
-{
+class GenreController extends Controller {
     
     public function index(){
         return view("genres", ['genres'=>Genre::all()]);
@@ -19,5 +18,4 @@ class GenreController extends Controller
         
         return view("songs", ['songs'=>Genre::find($genreId)->songs, "playlists"=>Playlist::all()]);
     }
-
 }

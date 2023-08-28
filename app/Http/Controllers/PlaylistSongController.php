@@ -6,11 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Models\PlaylistSong;
 
-class PlaylistSongController extends Controller
-{
+class PlaylistSongController extends Controller {
     
-    public function addSongToPlaylist(Request $request, $songId)
-    {
+    public function addSongToPlaylist(Request $request, $songId) {
         
         $newPlaylistSong = new PlaylistSong;
         $newPlaylistSong->song_id = $songId;
@@ -19,5 +17,4 @@ class PlaylistSongController extends Controller
 
         return redirect('/songs');
     }
-
 }
